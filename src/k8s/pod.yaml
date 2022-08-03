@@ -8,3 +8,4 @@ spec:
     image: gilmaroassis/conversao-temperatura:v2
     ports:
     - containerPort: 80
+    
