@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-conv-temperatura
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: gilmaroassis/conversao-temperatura:v2
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-web-conv-temperatura
+spec:
+  selector:
+    name: web
+  ports:
+  - protocol: TCP
+    port: 80
+    nodePort: 30000
+  type: NodePort
